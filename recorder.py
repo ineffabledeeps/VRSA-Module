@@ -14,10 +14,6 @@ import keyboard
 
 class Recorder:
 
-    #testing git
-    #testing Complete
-    #testing 1
-
     label_name=NULL
 
     #Setting up parameters like freq, duration, samplerate, channels for recorder
