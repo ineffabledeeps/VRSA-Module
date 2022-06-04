@@ -10,7 +10,8 @@ spectral_centroids = librosa.feature.spectral_centroid(data, sr=sampling_rate)[0
 print(spectral_centroids.shape)
 
 # Computing the time variable for visualization
-plt.figure(figsize=(12, 4))frames = range(len(spectral_centroids))
+plt.figure(figsize=(12, 4))
+frames = range(len(spectral_centroids))
 t = librosa.frames_to_time(frames)
 # Normalising the spectral centroid for visualisation
 def normalize(x, axis=0):
