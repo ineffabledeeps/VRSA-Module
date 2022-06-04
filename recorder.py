@@ -70,7 +70,7 @@ class Recorder:
                 time.sleep(1)
 
     #-- END OF RECORD --        
-
+    
     def save_recording(self, name):
         counter=0
         recording_path="dataset/voice-samples/"+str(name) #Path to store labeled recordings
@@ -80,6 +80,7 @@ class Recorder:
                 counter=counter+1
             else:
                 break
+
         
         if not os.path.exists(recording_path):
             print("creating Label directory")
