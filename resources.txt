@@ -4,8 +4,7 @@ ctrl+Alt+Up multi cursors
 Sampling Rate
 The sampling rate refers to the number of samples of audio recorded every second. It is measured in samples per second or Hertz (abbreviated as Hz or kHz, with one kHz being 1000 Hz).
 An audio sample is just a number representing the measured acoustic wave value at a specific point in time.
- It’s very important to note that these samples are taken at temporally equispaced instants in a second. For example, if the sampling rate is 8000 Hz, it’s not enough that there be 8000 samples sampled during a second; they must be taken at exactly 1/8000 of a second apart. The 1/8000 number in this case would be called the sampling interval (measured in seconds), and the sampling rate is simply the multiplicative inverse of that. 
-
+It’s very important to note that these samples are taken at temporally equispaced instants in a second. For example, if the sampling rate is 8000 Hz, it’s not enough that there be 8000 samples sampled during a second; they must be taken at exactly 1/8000 of a second apart. The 1/8000 number in this case would be called the sampling interval (measured in seconds), and the sampling rate is simply the multiplicative inverse of that. 
 
 train.Class.value_counts()
 
