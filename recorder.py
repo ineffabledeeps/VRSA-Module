@@ -13,7 +13,8 @@ import wavio as wv
 import keyboard
 
 class Recorder:
-
+    
+    stop_recording=False
     label_name=NULL
 
     #Setting up parameters like freq, duration, samplerate, channels for recorder
@@ -25,10 +26,10 @@ class Recorder:
 
         keyboard.add_hotkey('esc',lambda: self.stop_recording())  #creating Hotkey to stop program
 
-        if not os.path.exists("dataset"):
+        if not os.path.exists("dataset"):    # Creating folder dataset
             os.makedirs("dataset")
 
-        if not os.path.exists("dataset/voice-samples"): 
+        if not os.path.exists("dataset/voice-samples"): #Creating folder datset/voice-samples
                 os.makedirs("dataset/voice-samples")
 
     #-- END OF INITIALIZING CONSTRUCTOR --
@@ -42,6 +43,8 @@ class Recorder:
 
         while(True):
 
+            if(self.stop_recording==True):
+                break
 
             # Start recorder with the given values
             # of duration and sample frequency
@@ -88,7 +91,7 @@ class Recorder:
         #write(recording_path+"/recording"+str(counter)+".wav", self.freq, self.recording)
         
         # Convert the NumPy array to audio file with sample width
-        wv.write(recording_path+"/recording"+str(counter+1)+".wav", self.recording, self.freq, sampwidth=2)
+        wv.write(recording_path+"/recording"+str(counter)+".wav", self.recording, self.freq, sampwidth=2)
         
         print(recording_path+"/recording"+str(counter)+".wav "+Fore.GREEN+"Saved"+Fore.WHITE)
 
