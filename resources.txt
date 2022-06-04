@@ -8,6 +8,9 @@ It’s very important to note that these samples are taken at temporally equispa
 
 Librosa features:-https://librosa.org/doc/latest/feature.html 
 
+Spectral Centroid
+The spectral centroid indicates at which frequency the energy of a spectrum is centered upon or in other words It indicates where the ” center of mass” for a sound is located. This is like a weighted mean
+
 Spectral Rolloff
 It is a measure of the shape of the signal. It represents the frequency at which high frequencies decline to 0. To obtain it, we have to calculate the fraction of bins in the power spectrum where 85% of its power is at lower frequencies
 
