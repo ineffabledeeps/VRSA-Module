@@ -14,6 +14,8 @@ import keyboard
 
 class Recorder:
 
+    #testing git
+
     label_name=NULL
 
     #Setting up parameters like freq, duration, samplerate, channels for recorder
