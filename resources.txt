@@ -8,7 +8,8 @@ It’s very important to note that these samples are taken at temporally equispa
 
 Librosa features:-https://librosa.org/doc/latest/feature.html 
 
-hiiiii
+Spectral Rolloff
+It is a measure of the shape of the signal. It represents the frequency at which high frequencies decline to 0. To obtain it, we have to calculate the fraction of bins in the power spectrum where 85% of its power is at lower frequencies
 
 Spectral bandwidt
 The spectral bandwidth is defined as the width of the band of light at one-half the peak maximum (or full width at half maximum [FWHM]) and is represented by the two vertical red lines and λSB on the wavelength axis.
