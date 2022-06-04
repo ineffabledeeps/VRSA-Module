@@ -80,7 +80,6 @@ class Recorder:
                 counter=counter+1
             else:
                 break
-
         
         if not os.path.exists(recording_path):
             print("creating Label directory")
