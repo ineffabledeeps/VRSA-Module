@@ -1,5 +1,6 @@
 import sklearn
 import librosa
+import librosa.display
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -7,11 +8,11 @@ audio_data = 'dataset/voice-samples/Deepak/recording0.wav'
 data, sampling_rate = librosa.load(audio_data)  #loading audio data
 print(type(data), type(sampling_rate))
 
-spectral_centroids = librosa.feature.spectral_centroid(data, sr=sampling_rate)[0]   #Extracting Spectral_centroids from audio
+spectral_centroids = librosa.feature.spectral_centroid(y=data, sr=sampling_rate)[0]   #Extracting Spectral_centroids from audio
 print(spectral_centroids.shape)
 
 # Computing the time variable for visualization
-fig1, ax1=plt.subplots(nrows=2,sharex=True)
+fig1, ax1=plt.subplots(nrows=3,sharex=True)
 frames = range(len(spectral_centroids))
 t = librosa.frames_to_time(frames)
 # Normalising the spectral centroid for visualisation
