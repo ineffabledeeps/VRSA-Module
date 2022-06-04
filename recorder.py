@@ -13,8 +13,6 @@ import wavio as wv
 import keyboard
 
 class Recorder:
-    
-    #sync changes
 
     stop_recording=False
     label_name=NULL
