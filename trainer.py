@@ -2,7 +2,6 @@ import sklearn
 import librosa
 import matplotlib.pyplot as plt
 
-
 audio_data = 'dataset/voice-samples/Deepak/recording0.wav'
 data, sampling_rate = librosa.load(audio_data)  #loading audio data
 print(type(data), type(sampling_rate))
