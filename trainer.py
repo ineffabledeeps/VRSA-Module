@@ -25,7 +25,8 @@ class Trainer:
                 writer=csv.writer(csvfile)
                 writer.writerow(self.head)        
 
-    
+    # -- END OF INTITALIZING CONSTRUCTOR --
+
     def extract(self):   
         audio_data = 'dataset/voice-samples/Deepak/recording0.wav'
         data, sampling_rate = librosa.load(audio_data)  #loading audio data
@@ -103,6 +104,8 @@ class Trainer:
         librosa.display.specshow(librosa.amplitude_to_db(S = np.abs(librosa.stft(data)), ref=np.max),y_axis='log', x_axis='time', ax=ax2[0])
         librosa.display.specshow(chroma, y_axis='chroma', x_axis='time', ax=ax2[1])
         plt.show()
+
+    #-- END OF EXTRACT --
 
 x=Trainer("deepak")
 x.extract()
