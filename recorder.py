@@ -1,5 +1,4 @@
 # import required libraries
-from cProfile import label
 import os
 import time
 from colorama import Fore
