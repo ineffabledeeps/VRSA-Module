@@ -1,10 +1,7 @@
 # import required libraries
-from asyncio.windows_events import NULL
 from cProfile import label
 import os
-from time import sleep
 import time
-from tracemalloc import stop
 from colorama import Fore
 from sklearn import datasets
 import sounddevice as sd
