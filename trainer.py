@@ -13,7 +13,7 @@ class Trainer:
     def __init__(self):
 
         #Creating Fields for CSV file
-        self.head=["id","name","spectral_centroid","spectral_rolloff","spectral_bandwidth_2","spectral_bandwidth_3","spectral_bandwidth_4","zero_crossings","mfccs","chroma"]
+        self.head=["id","name","spectral_centroid","rmse","spectral_rolloff","spectral_bandwidth_2","spectral_bandwidth_3","spectral_bandwidth_4","zero_crossings","mfccs","chroma"]
 
         #checking if training_info.csv exists or not
         #if not exists will create csv file
