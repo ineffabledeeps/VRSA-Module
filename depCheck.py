@@ -4,7 +4,7 @@ import time
 import pkg_resources
 
 print("Running dependency check..")
-required = {'opencv-python', 'tk','imutils','pillow'}
+required = {'sklearn','pandas','librosa','matplotlib','numpy','sounddevice','scipy','wavio','keyboard','colorama','keras'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 
@@ -13,4 +13,3 @@ if missing:
     python = sys.executable
     returned_value = subprocess.call([python, '-m', 'pip', 'install', *missing], shell=True, universal_newlines=True)
     print('returned value:', returned_value)
-print("We are good to go!")
