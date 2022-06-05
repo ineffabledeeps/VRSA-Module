@@ -1,6 +1,5 @@
 import csv
 import os
-from tkinter import W
 from typing import Counter
 import pandas as pd
 import sklearn
