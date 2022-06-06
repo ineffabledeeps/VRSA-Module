@@ -15,12 +15,13 @@ print("\n")
 
 time.sleep(3)
 def vrsa_help():
-    print(Fore.GREEN+"Available Commands")
+    print(Fore.GREEN+"\nAvailable Commands")
     print(18*"-")
     print("-record")
     print("-analyze")
     print("-synt")
     print("-exit")
+    print("-help")
     print("-info\n"+Fore.WHITE)
 
 vrsa_help()
