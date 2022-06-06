@@ -38,5 +38,5 @@ while True:
     if(input_choice=='info'):
         info()
 
-    if(input_choice='help'):
+    if(input_choice=='help'):
         help()
