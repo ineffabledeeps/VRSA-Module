@@ -1,21 +1,19 @@
-#import IPython.display as ipd
-#ipd.Audio('recording1.wav')
-
-import os
-import pandas as pd
 import librosa
-import librosa.display
-import glob 
-import matplotlib.pyplot as plt
 
-data, sampling_rate = librosa.load('recording1.wav')
+class recognizer:
+    def recognize():
+        def __init__():
+        audio_data = f'dataset/voice-samples/{label}/{rec}'
+        data, sampling_rate = librosa.load(audio_data)  #loading audio data
+        print(type(data), type(sampling_rate))
 
 
-plt.figure(figsize=(12, 4))
-fig, ax = plt.subplots(nrows=1, sharex=True)
-librosa.display.waveshow(data, sr=sampling_rate, ax=ax)
-ax.set(title='Envelope view, mono')
-ax.label_outer()
-
-#print(train)
-plt.show()
+        spectral_centroids = librosa.feature.spectral_centroid(y=data, sr=sampling_rate)[0]   #Extracting Spectral_centroids from audio
+        rmse=librosa.feature.rms(y=data) #calculating rmse
+        spectral_rolloff = librosa.feature.spectral_rolloff(y=data+0.01, sr=sampling_rate)[0]  #Extracting Sepectral rolloff
+        spectral_bandwidth_2 = librosa.feature.spectral_bandwidth(y=data+0.01, sr=sampling_rate)[0]
+        spectral_bandwidth_3 = librosa.feature.spectral_bandwidth(y=data+0.01, sr=sampling_rate, p=3)[0]
+        spectral_bandwidth_4 = librosa.feature.spectral_bandwidth(y=data+0.01, sr=sampling_rate, p=4)[0]
+        zero_crossings = librosa.zero_crossings(data, pad=False) #Calculating Zero Crossings
+        mfccs = librosa.feature.mfcc(y=data, sr=sampling_rate) #Extracting Mel-frequency cepstral coeffecients (MFCCs)
+        chroma = librosa.feature.chroma_stft(y=data, sr=sampling_rate)

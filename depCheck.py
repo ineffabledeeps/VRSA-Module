@@ -4,7 +4,7 @@ import time
 import pkg_resources
 
 print("Running dependency check..")
-required = {'sklearn','pandas','librosa','matplotlib','numpy','sounddevice','scipy','wavio','keyboard','colorama','keras'}
+required = {'sklearn','pandas','tensorflow','librosa','matplotlib','numpy','sounddevice','scipy','wavio','keyboard','colorama','keras'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 

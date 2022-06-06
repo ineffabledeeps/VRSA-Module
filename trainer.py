@@ -6,6 +6,11 @@ import librosa
 import librosa.display
 import matplotlib.pyplot as plt
 import numpy as np
+from keras import layers
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from keras.utils import np_utils
+from keras.models import Sequential
 class Trainer:
 
     def __init__(self):
@@ -109,5 +114,39 @@ class Trainer:
 
         #-- END OF EXTRACT --    
 
+    def train(self):
+
+        data = pd.read_csv('training_info.csv')
+        #print(data.head())# Dropping unneccesary columns
+        #data = data.drop(['filename'],axis=1)#Encoding the Labels
+        labels = data.iloc[:, 1]
+        encoder = LabelEncoder()
+
+        y = encoder.fit_transform(labels) #Scaling the Feature columns
+        #y = np_utils.to_categorical(encoder.fit_transform(labels))
+
+        scaler = StandardScaler()
+        #print(y)
+        print("---------------")
+        X = scaler.fit_transform(np.array(data.iloc[:, 2:], dtype = float))#Dividing data into training and Testing set
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+        #print(X_train)
+
+        model = Sequential()
+        model.add(layers.Dense(256, activation='relu', input_shape=(X_train.shape[1],)))
+        model.add(layers.Dense(128, activation='relu'))
+        model.add(layers.Dense(64, activation='relu'))
+        model.add(layers.Dense(3, activation='softmax'))
+        model.compile(optimizer='adam',
+                       loss='sparse_categorical_crossentropy',
+                       metrics=['accuracy'])    
+        classifier = model.fit(X_train,
+                            y_train,
+                            epochs=250,
+                            batch_size=128,validation_data=(X_test,y_test))
+        
+        return model
 x=Trainer()
-x.extract()
+x.train()
