@@ -1,5 +1,6 @@
 import sys
 import time
+import depCheck
 
 from colorama import Fore
 
