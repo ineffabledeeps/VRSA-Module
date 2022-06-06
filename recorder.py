@@ -1,4 +1,5 @@
 # import required libraries
+from asyncio.windows_events import NULL
 import os
 import time
 from colorama import Fore
@@ -11,7 +12,7 @@ import keyboard
 class Recorder:
 
     stop_recording=False
-    label_name=NULL
+    label_name=""
 
     #Setting up parameters like freq, duration, samplerate, channels for recorder
     def __init__(self):
