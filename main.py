@@ -14,8 +14,7 @@ print(" "*margin+"*"*71+"*")
 print("\n")
 
 time.sleep(3)
-help()
-def help():
+def vrsa_help():
     print(Fore.GREEN+"Available Commands")
     print(18*"-")
     print("-record")
@@ -24,7 +23,9 @@ def help():
     print("-exit")
     print("-info\n"+Fore.WHITE)
 
-def info():
+vrsa_help()
+
+def vrsa_info():
     print("Project: Voice Recognition, Synthesis and Analyzer Module (VRSA) Module")
     print("Submitted to: DYPIU")
     print("Contributers: Deepak Bobade, Mayank Nipane, Sudhanshu Jichkar, Juee Jadhav")
@@ -36,7 +37,7 @@ while True:
         break
 
     if(input_choice=='info'):
-        info()
+        vrsa_info()
 
     if(input_choice=='help'):
-        help()
+        vrsa_help()
