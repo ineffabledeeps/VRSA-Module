@@ -13,3 +13,4 @@ if missing:
     python = sys.executable
     returned_value = subprocess.call([python, '-m', 'pip', 'install', *missing], shell=True, universal_newlines=True)
     print('returned value:', returned_value)
+print("We are good to go!")

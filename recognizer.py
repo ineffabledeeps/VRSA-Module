@@ -1,13 +1,13 @@
 import librosa
+import
 
 class recognizer:
-    def recognize():
-        def __init__():
-        audio_data = f'dataset/voice-samples/{label}/{rec}'
+    def __init__():
+        audio_data = "recording_live.wav"
         data, sampling_rate = librosa.load(audio_data)  #loading audio data
         print(type(data), type(sampling_rate))
 
-
+    def recognize():
         spectral_centroids = librosa.feature.spectral_centroid(y=data, sr=sampling_rate)[0]   #Extracting Spectral_centroids from audio
         rmse=librosa.feature.rms(y=data) #calculating rmse
         spectral_rolloff = librosa.feature.spectral_rolloff(y=data+0.01, sr=sampling_rate)[0]  #Extracting Sepectral rolloff

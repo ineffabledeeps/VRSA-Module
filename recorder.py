@@ -95,9 +95,22 @@ class Recorder:
 
     def stop_recording(self):
         self.stop_recording=True
-        print("Quitting in progress")
+        print("Quitting in progress..")
 
     #-- END OF STOP_RECORDING --   
+
+    def live(self):
+        self.recording = sd.rec(int(self.duration * self.freq),
+    	amplerate=self.freq, channels=2)
+        
+        print("Recording in progress...")
+        sd.wait()
+
+        wv.write("recording_live.wav", self.recording, self.freq, sampwidth=2)
+
+    #-- END OF LIVE --   
+
+
 
 x = Recorder()
 x.record()
