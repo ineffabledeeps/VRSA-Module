@@ -3,7 +3,7 @@ import subprocess
 import time
 import pkg_resources
 
-#sklearn pandas tensorflow librosa matplotlib numpy sounddevice sci ,'wav ,'keyboard colorama keras"
+#sklearn pandas tensorflow librosa matplotlib numpy sounddevice scipy wavio keyboard colorama keras"
 print("Running dependency check..")
 required = {'sklearn','pandas','tensorflow','librosa','matplotlib','numpy','sounddevice','scipy','wavio','keyboard','colorama','keras'}
 installed = {pkg.key for pkg in pkg_resources.working_set}
