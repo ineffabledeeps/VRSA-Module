@@ -1,5 +1,4 @@
 # import required libraries
-from asyncio.windows_events import NULL
 import os
 import time
 from colorama import Fore
