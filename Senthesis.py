@@ -50,3 +50,19 @@ def get_large_audio_transcription(path):
                 whole_text += text
     # return the text for all chunks detected
     return whole_text
+
+
+
+    #for One wav file
+    '''
+    import speech_recognition as sr   #Import lib
+    filename = "16-122828-0002.wav"   #reading file
+    
+    r = sr.Recognizer()               # initialize the recognizer
+    
+    # open the file
+    with sr.AudioFile(filename) as source:
+        audio_data = r.record(source)            # listen for the data (load audio to memory)
+        text = r.recognize_google(audio_data)    # recognize (convert from speech to text)
+        print(text)
+    '''
