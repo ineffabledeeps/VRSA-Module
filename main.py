@@ -14,7 +14,7 @@ print(" "*margin+"*"*71+"*")
 print("\n")
 
 time.sleep(3)
-
+help()
 def help():
     print(Fore.GREEN+"Available Commands")
     print(18*"-")
@@ -37,3 +37,6 @@ while True:
 
     if(input_choice=='info'):
         info()
+
+    if(input_choice='help'):
+        help()
