@@ -36,5 +36,5 @@ StandardScaler
 StandardScaler removes the mean and scales each feature/variable to unit variance. This operation is performed feature-wise in an independent way. StandardScaler can be influenced by outliers (if they exist in the dataset) since it involves the estimation of the empirical mean and standard deviation of each feature.
 
 
-
+Senthesis:- https://www.thepythoncode.com/article/using-speech-recognition-to-convert-speech-to-text-python
 Librosa features:-https://librosa.org/doc/latest/feature.html 
