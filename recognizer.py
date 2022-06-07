@@ -1,6 +1,7 @@
 import librosa
 import numpy as np
 import matplotlib.pyplot as plt
+import sklearn
 import recorder
 
 class Recognizer:
@@ -40,10 +41,12 @@ class Recognizer:
 
         print("analyzing")  
 
-        print(self.spectral_centroids.shape)
-
+        
+        
         #Computing the time variable for visualization
         fig1, ax1=plt.subplots(nrows=3,sharex=True)
+        frames = range(len(self.spectral_centroids))
+        t = librosa.frames_to_time(frames)
 
         #Plotting the Spectral Centroid along the waveform
         librosa.display.waveshow(y=self.data, sr=self.sampling_rate, ax=ax1[0])  
