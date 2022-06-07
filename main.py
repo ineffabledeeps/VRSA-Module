@@ -56,7 +56,7 @@ class main:
 
             elif(input_choice=='recognize'):
                 self.trainer_instance=trainer.Trainer()
-                self.trainer_instance.extract()
+                #self.trainer_instance.extract()
                 model=self.trainer_instance.train()
 
                 self.recognizer_instance=recognizer.Recognizer()

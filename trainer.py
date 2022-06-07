@@ -22,7 +22,7 @@ class Trainer:
         if(not os.path.exists("training_info.csv")):
             with open("training_info.csv",'w',newline="") as csvfile:
                 writer=csv.writer(csvfile)
-                writer.writerow(self.head)        
+                #writer.writerow(self.head)        
 
     # -- END OF INTITALIZING CONSTRUCTOR --
 
@@ -37,7 +37,7 @@ class Trainer:
                 print(type(data), type(sampling_rate))
 
                 spectral_centroids = librosa.feature.spectral_centroid(y=data, sr=sampling_rate)[0]   #Extracting Spectral_centroids from audio
-                print(spectral_centroids.shape)
+                #print(spectral_centroids.shape)
 
                 # Computing the time variable for visualization
                 #fig1, ax1=plt.subplots(nrows=3,sharex=True)
@@ -72,7 +72,7 @@ class Trainer:
                 #fig2, ax2=plt.subplots(nrows=2,sharex=True)
 
                 zero_crossings = librosa.zero_crossings(data, pad=False) #Calculating Zero Crossings
-                print(sum(zero_crossings))
+                #print(sum(zero_crossings))
 
                 mfccs = librosa.feature.mfcc(y=data, sr=sampling_rate) #Extracting Mel-frequency cepstral coeffecients (MFCCs)
                 print(mfccs.shape)
@@ -87,8 +87,8 @@ class Trainer:
                 #ax3[1].set(title='MFCC')
 
                 chroma = librosa.feature.chroma_stft(y=data, sr=sampling_rate)
-                print(chroma.shape)
-                print(label+"-----"+rec)
+                #print(chroma.shape)
+                #print(label+"-----"+rec)
 
                 #librosa.display.specshow(librosa.amplitude_to_db(S = np.abs(librosa.stft(data)), ref=np.max),y_axis='log', x_axis='time')
                 #librosa.display.specshow(chroma, y_axis='chroma', x_axis='time')
@@ -108,6 +108,10 @@ class Trainer:
                 #Writing data to csv file
                 with open("training_info.csv",'a',newline='') as csvfile:
                     csvwriter=csv.writer(csvfile)
+              
+                    row=[generateId(),label,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)]
+                    for x in mfccs:
+                        row.append(np.mean(x))
                     csvwriter.writerow([generateId(),label,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)])
              
 
@@ -126,7 +130,7 @@ class Trainer:
 
         scaler = StandardScaler()
         #print(y)
-        print("---------------")
+        #print("---------------")
         X = scaler.fit_transform(np.array(data.iloc[:, 2:], dtype = float))#Dividing data into training and Testing set
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
