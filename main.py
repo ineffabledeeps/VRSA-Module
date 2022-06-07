@@ -1,5 +1,6 @@
 import sys
 import time
+import depCheck
 
 from colorama import Fore
 
@@ -12,15 +13,23 @@ print(" "*margin+"*"+" "*70+"*")
 print(" "*margin+"*"*71+"*")
 print("\n")
 
-import depCheck
 time.sleep(3)
-print(Fore.GREEN+"\nAvailable Commands")
-print(18*"-")
-print("-record")
-print("-analyze")
-print("-synt")
-print("-exit")
-print("-info\n"+Fore.WHITE)
+def vrsa_help():
+    print(Fore.GREEN+"\nAvailable Commands")
+    print(18*"-")
+    print("-record")
+    print("-analyze")
+    print("-synt")
+    print("-exit")
+    print("-help")
+    print("-info\n"+Fore.WHITE)
+
+vrsa_help()
+
+def vrsa_info():
+    print("Project: Voice Recognition, Synthesis and Analyzer Module (VRSA) Module")
+    print("Submitted to: DYPIU")
+    print("Contributers: Deepak Bobade, Mayank Nipane, Sudhanshu Jichkar, Juee Jadhav")
 
 while True:
     input_choice=input("Command: ")
@@ -28,4 +37,8 @@ while True:
     if(input_choice=='exit'):
         break
 
+    if(input_choice=='info'):
+        vrsa_info()
 
+    if(input_choice=='help'):
+        vrsa_help()
