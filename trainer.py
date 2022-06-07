@@ -146,7 +146,7 @@ class Trainer:
                        loss='sparse_categorical_crossentropy',
                        metrics=['accuracy'])    
         classifier = model.fit(X_train,
-                            y_train,
+                            y_train, 
                             epochs=250,
                             batch_size=12)
         return model,[x for x in os.listdir(f"dataset/voice-samples")]
