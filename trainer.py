@@ -22,7 +22,7 @@ class Trainer:
         if(not os.path.exists("training_info.csv")):
             with open("training_info.csv",'w',newline="") as csvfile:
                 writer=csv.writer(csvfile)
-                #writer.writerow(self.head)        
+                writer.writerow(self.head)        
 
     # -- END OF INTITALIZING CONSTRUCTOR --
 
