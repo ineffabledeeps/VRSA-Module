@@ -148,5 +148,5 @@ class Trainer:
         classifier = model.fit(X_train,
                             y_train, 
                             epochs=250,
-                            batch_size=12)
+                            batch_size=250)
         return model,[x for x in os.listdir(f"dataset/voice-samples")]

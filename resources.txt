@@ -6,7 +6,7 @@ The sampling rate refers to the number of samples of audio recorded every second
 An audio sample is just a number representing the measured acoustic wave value at a specific point in time.
 It’s very important to note that these samples are taken at temporally equispaced instants in a second. For example, if the sampling rate is 8000 Hz, it’s not enough that there be 8000 samples sampled during a second; they must be taken at exactly 1/8000 of a second apart. The 1/8000 number in this case would be called the sampling interval (measured in seconds), and the sampling rate is simply the multiplicative inverse of that. 
 
-Spectral Centroi
+Spectral Centroid
 The spectral centroid indicates at which frequency the energy of a spectrum is centered upon or in other words It indicates where the ” center of mass” for a sound is located. This is like a weighted mean
 
 Spectral Rolloff
