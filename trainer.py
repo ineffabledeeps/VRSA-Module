@@ -37,7 +37,7 @@ class Trainer:
                 print(type(data), type(sampling_rate))
 
                 spectral_centroids = librosa.feature.spectral_centroid(y=data, sr=sampling_rate)[0]   #Extracting Spectral_centroids from audio
-                #print(spectral_centroids.shape)
+                print("spectral centroid: ",spectral_centroids.shape)
 
                 # Computing the time variable for visualization
                 #fig1, ax1=plt.subplots(nrows=3,sharex=True)
@@ -53,8 +53,10 @@ class Trainer:
                 #ax1[0].plot(t, normalize(spectral_centroids), color='b')
 
                 rmse=librosa.feature.rms(y=data) #calculating rmse
+                print("rmse: ",rmse.shape)
 
                 spectral_rolloff = librosa.feature.spectral_rolloff(y=data+0.01, sr=sampling_rate)[0]  #Extracting Sepectral rolloff
+                print("spectral rolloff: ",spectral_rolloff.shape)
                 #librosa.display.waveshow(y=data, sr=sampling_rate, ax=ax1[1])
                 #ax1[1].plot(t, normalize(spectral_rolloff), color='r')
 
@@ -72,10 +74,10 @@ class Trainer:
                 #fig2, ax2=plt.subplots(nrows=2,sharex=True)
 
                 zero_crossings = librosa.zero_crossings(data, pad=False) #Calculating Zero Crossings
-                #print(sum(zero_crossings))
+                print(sum(zero_crossings))
 
                 mfccs = librosa.feature.mfcc(y=data, sr=sampling_rate) #Extracting Mel-frequency cepstral coeffecients (MFCCs)
-                print(mfccs.shape)
+                print("mfccs: ",mfccs.shape)
 
                 #fig3, ax3 = plt.subplots(nrows=2, sharex=True)
                 #img = librosa.display.specshow(librosa.power_to_db(S = np.abs(librosa.stft(data)), ref=np.max),x_axis='time', y_axis='mel', fmax=8000,ax=ax3[0])
@@ -87,8 +89,8 @@ class Trainer:
                 #ax3[1].set(title='MFCC')
 
                 chroma = librosa.feature.chroma_stft(y=data, sr=sampling_rate)
-                #print(chroma.shape)
-                #print(label+"-----"+rec)
+                print("chroma: "+chroma.shape)
+                print(label+"-----",rec)
 
                 #librosa.display.specshow(librosa.amplitude_to_db(S = np.abs(librosa.stft(data)), ref=np.max),y_axis='log', x_axis='time')
                 #librosa.display.specshow(chroma, y_axis='chroma', x_axis='time')
