@@ -57,7 +57,7 @@ class Recognizer:
         ax1[2].plot(t, normalize(self.spectral_bandwidth_2), color='r')
         ax1[2].plot(t, normalize(self.spectral_bandwidth_3), color='g')
         ax1[2].plot(t, normalize(self.spectral_bandwidth_4), color='y')
-        ax1[2].legend(('p = 2', 'p = 3', 'p = 4'))5
+        ax1[2].legend(('p = 2', 'p = 3', 'p = 4'))
 
         fig2, ax2=plt.subplots(nrows=2,sharex=True)
 
