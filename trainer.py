@@ -1,7 +1,6 @@
 import csv
 import os
 import pandas as pd
-import sklearn
 import librosa
 import librosa.display
 import matplotlib.pyplot as plt
@@ -145,8 +144,5 @@ class Trainer:
         classifier = model.fit(X_train,
                             y_train,
                             epochs=250,
-                            batch_size=128,validation_data=(X_test,y_test))
-        
+                            batch_size=128)
         return model
-x=Trainer()
-x.train()
