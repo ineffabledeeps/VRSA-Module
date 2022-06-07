@@ -1,5 +1,6 @@
 import librosa
 import numpy as np
+import matplotlib.pyplot as plt
 import recorder
 
 class Recognizer:
@@ -11,16 +12,16 @@ class Recognizer:
         print(type(self.data), type(self.sampling_rate))
 
     def recognize(self,model,labels):
-        spectral_centroids = librosa.feature.spectral_centroid(y=self.data, sr=self.sampling_rate)[0]   #Extracting Spectral_centroids from audio
-        rmse=librosa.feature.rms(y=self.data) #calculating rmse
-        spectral_rolloff = librosa.feature.spectral_rolloff(y=self.data+0.01, sr=self.sampling_rate)[0]  #Extracting Sepectral rolloff
-        spectral_bandwidth_2 = librosa.feature.spectral_bandwidth(y=self.data+0.01, sr=self.sampling_rate)[0]
-        spectral_bandwidth_3 = librosa.feature.spectral_bandwidth(y=self.data+0.01, sr=self.sampling_rate, p=3)[0]
-        spectral_bandwidth_4 = librosa.feature.spectral_bandwidth(y=self.data+0.01, sr=self.sampling_rate, p=4)[0]
-        zero_crossings = librosa.zero_crossings(self.data, pad=False) #Calculating Zero Crossings
-        mfccs = librosa.feature.mfcc(y=self.data, sr=self.sampling_rate) #Extracting Mel-frequency cepstral coeffecients (MFCCs)
-        chroma = librosa.feature.chroma_stft(y=self.data, sr=self.sampling_rate)
-        self.features=[np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)]
+        self.spectral_centroids = librosa.feature.spectral_centroid(y=self.data, sr=self.sampling_rate)[0]   #Extracting Spectral_centroids from audio
+        self.rmse=librosa.feature.rms(y=self.data) #calculating rmse
+        self.spectral_rolloff = librosa.feature.spectral_rolloff(y=self.data+0.01, sr=self.sampling_rate)[0]  #Extracting Sepectral rolloff
+        self.spectral_bandwidth_2 = librosa.feature.spectral_bandwidth(y=self.data+0.01, sr=self.sampling_rate)[0]
+        self.spectral_bandwidth_3 = librosa.feature.spectral_bandwidth(y=self.data+0.01, sr=self.sampling_rate, p=3)[0]
+        self.spectral_bandwidth_4 = librosa.feature.spectral_bandwidth(y=self.data+0.01, sr=self.sampling_rate, p=4)[0]
+        self.zero_crossings = librosa.zero_crossings(self.data, pad=False) #Calculating Zero Crossings
+        self.mfccs = librosa.feature.mfcc(y=self.data, sr=self.sampling_rate) #Extracting Mel-frequency cepstral coeffecients (MFCCs)
+        self.chroma = librosa.feature.chroma_stft(y=self.data, sr=self.sampling_rate)
+        self.features=[np.mean(self.spectral_centroids),np.mean(self.rmse),np.mean(self.spectral_rolloff),np.mean(self.spectral_bandwidth_2),np.mean(self.spectral_bandwidth_3),np.mean(self.spectral_bandwidth_4),np.mean(self.zero_crossings),np.mean(self.mfccs),np.mean(self.chroma)]
         
         print(self.features)
 
@@ -33,3 +34,12 @@ class Recognizer:
 
     def analyze(self):
         print("analyzing")  
+
+        fig3, ax3 = plt.subplots(nrows=2, sharex=True)
+        img = librosa.display.specshow(librosa.power_to_db(S = np.abs(librosa.stft(self.data)), ref=np.max),x_axis='time', y_axis='mel', fmax=8000,ax=ax3[0])
+        fig3.colorbar(img, ax=[ax3[0]])
+        ax3[0].set(title='Mel spectrogram')
+        ax3[0].label_outer()
+        img = librosa.display.specshow(self.mfccs, x_axis='time', ax=ax3[1])
+        fig3.colorbar(img, ax=[ax3[1]])
+        ax3[1].set(title='MFCC')
