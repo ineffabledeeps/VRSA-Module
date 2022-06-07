@@ -32,8 +32,38 @@ class Recognizer:
         #print(mfccs.shape)
         #print(mfccs)
 
+
     def analyze(self):
+
+        def normalize(x, axis=0):
+            return sklearn.preprocessing.minmax_scale(x, axis=axis)
+
         print("analyzing")  
+
+        print(self.spectral_centroids.shape)
+
+        #Computing the time variable for visualization
+        fig1, ax1=plt.subplots(nrows=3,sharex=True)
+
+        #Plotting the Spectral Centroid along the waveform
+        librosa.display.waveshow(y=self.data, sr=self.sampling_rate, ax=ax1[0])  
+        ax1[0].plot(t, normalize(self.spectral_centroids), color='b')
+
+        librosa.display.waveshow(y=self.data, sr=self.sampling_rate, ax=ax1[1])
+        ax1[1].plot(t, normalize(self.spectral_rolloff), color='r')
+
+        fig2, ax2 = plt.subplots(nrows=3,sharex=True)
+        librosa.display.waveshow(self.data, sr=self.sampling_rate,ax=ax1[2])
+        ax1[2].plot(t, normalize(self.spectral_bandwidth_2), color='r')
+        ax1[2].plot(t, normalize(self.spectral_bandwidth_3), color='g')
+        ax1[2].plot(t, normalize(self.spectral_bandwidth_4), color='y')
+        ax1[2].legend(('p = 2', 'p = 3', 'p = 4'))5
+
+        fig2, ax2=plt.subplots(nrows=2,sharex=True)
+
+        print(sum(self.zero_crossings))
+
+
 
         fig3, ax3 = plt.subplots(nrows=2, sharex=True)
         img = librosa.display.specshow(librosa.power_to_db(S = np.abs(librosa.stft(self.data)), ref=np.max),x_axis='time', y_axis='mel', fmax=8000,ax=ax3[0])
@@ -43,3 +73,14 @@ class Recognizer:
         img = librosa.display.specshow(self.mfccs, x_axis='time', ax=ax3[1])
         fig3.colorbar(img, ax=[ax3[1]])
         ax3[1].set(title='MFCC')
+
+
+        print(self.chroma.shape)
+        #print(label+"-----"+rec)
+
+        librosa.display.specshow(librosa.amplitude_to_db(S = np.abs(librosa.stft(self.data)), ref=np.max),y_axis='log', x_axis='time')
+        librosa.display.specshow(self.chroma, y_axis='chroma', x_axis='time')
+        plt.show()
+
+
+        
