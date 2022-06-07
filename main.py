@@ -57,10 +57,10 @@ class main:
             elif(input_choice=='recognize'):
                 self.trainer_instance=trainer.Trainer()
                 #self.trainer_instance.extract()
-                model=self.trainer_instance.train()
+                model,labels=self.trainer_instance.train()
 
                 self.recognizer_instance=recognizer.Recognizer()
-                self.recognizer_instance.recognize(model)
+                self.recognizer_instance.recognize(model,labels)
 
             else:
                 print("Invalid command try from below commands")

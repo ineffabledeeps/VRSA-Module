@@ -28,9 +28,9 @@ class Trainer:
 
     def extract(self): 
 
-        labels=[x for x in os.listdir(f"dataset/voice-samples")]
-        print(labels)
-        for label in labels:
+        self.labels=[x for x in os.listdir(f"dataset/voice-samples")]
+        print(self.labels)
+        for label in self.labels:
             for rec in [x for x in os.listdir(f"dataset/voice-samples/{label}")]:
                 audio_data = f'dataset/voice-samples/{label}/{rec}'
                 data, sampling_rate = librosa.load(audio_data)  #loading audio data
@@ -141,12 +141,12 @@ class Trainer:
         model.add(layers.Dense(256, activation='relu', input_shape=(X_train.shape[1],)))
         model.add(layers.Dense(128, activation='relu'))
         model.add(layers.Dense(64, activation='relu'))
-        model.add(layers.Dense(3, activation='softmax'))
+        model.add(layers.Dense(4, activation='softmax'))
         model.compile(optimizer='adam',
                        loss='sparse_categorical_crossentropy',
                        metrics=['accuracy'])    
         classifier = model.fit(X_train,
                             y_train,
                             epochs=250,
-                            batch_size=128)
-        return model
+                            batch_size=12)
+        return model,[x for x in os.listdir(f"dataset/voice-samples")]
