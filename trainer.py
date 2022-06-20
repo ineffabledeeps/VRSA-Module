@@ -6,6 +6,7 @@ import librosa.display
 import matplotlib.pyplot as plt
 import numpy as np
 from keras import layers
+import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from keras.utils import np_utils
@@ -89,7 +90,7 @@ class Trainer:
                 #ax3[1].set(title='MFCC')
 
                 chroma = librosa.feature.chroma_stft(y=data, sr=sampling_rate)
-                print("chroma: "+chroma.shape)
+                print("chroma: ",chroma.shape)
                 print(label+"-----",rec)
 
                 #librosa.display.specshow(librosa.amplitude_to_db(S = np.abs(librosa.stft(data)), ref=np.max),y_axis='log', x_axis='time')
@@ -112,8 +113,8 @@ class Trainer:
                     csvwriter=csv.writer(csvfile)
               
                     row=[generateId(),label,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)]
-                    for x in mfccs:
-                        row.append(np.mean(x))
+                    #for x in mfccs:
+                    #    row.append(np.mean(x))
                     csvwriter.writerow([generateId(),label,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)])
              
 
