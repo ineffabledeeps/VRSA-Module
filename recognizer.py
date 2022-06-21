@@ -23,11 +23,17 @@ class Recognizer:
         self.zero_crossings = librosa.zero_crossings(self.data, pad=False) #Calculating Zero Crossings
         self.mfccs = librosa.feature.mfcc(y=self.data, sr=self.sampling_rate) #Extracting Mel-frequency cepstral coeffecients (MFCCs)
         self.chroma = librosa.feature.chroma_stft(y=self.data, sr=self.sampling_rate)
-        self.features=[np.mean(self.spectral_centroids),np.mean(self.rmse),np.mean(self.spectral_rolloff),np.mean(self.spectral_bandwidth_2),np.mean(self.spectral_bandwidth_3),np.mean(self.spectral_bandwidth_4),np.mean(self.zero_crossings),np.mean(self.mfccs),np.mean(self.chroma)]
-      
+        self.features=[np.mean(self.spectral_centroids),np.mean(self.rmse),np.mean(self.spectral_rolloff),np.mean(self.spectral_bandwidth_2),np.mean(self.spectral_bandwidth_3),np.mean(self.spectral_bandwidth_4),np.mean(self.zero_crossings)]
+
+        for x in self.mfccs:
+            self.features.append(np.mean(x))
+
+        for y in self.chroma:
+            self.features.append(np.mean(y))
+            
         #print(self.mfccs)
         #print(self.chroma)
-        #print(self.features)
+        print(len(self.features))
 
         prediction=model.predict([self.features])
         sol=zip(prediction[0],labels)

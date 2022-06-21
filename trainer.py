@@ -16,7 +16,13 @@ class Trainer:
     def __init__(self):
 
         #Creating Fields for CSV file
-        self.head=["id","name","spectral_centroid","rmse","spectral_rolloff","spectral_bandwidth_2","spectral_bandwidth_3","spectral_bandwidth_4","zero_crossings","mfccs","chroma"]
+        self.head=["id","name","spectral_centroid","rmse","spectral_rolloff","spectral_bandwidth_2","spectral_bandwidth_3","spectral_bandwidth_4","zero_crossings"]
+        
+        for x in range(1,21):
+            self.head.append("mfcc"+str(x))
+        
+        for y in range(1,13):
+            self.head.append("chroma"+str(y))
 
         #checking if training_info.csv exists or not
         #if not exists will create csv file
@@ -112,10 +118,16 @@ class Trainer:
                 with open("training_info.csv",'a',newline='') as csvfile:
                     csvwriter=csv.writer(csvfile)
               
-                    row=[generateId(),label ,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)]
-                    #for x in mfccs:
-                    #    row.append(np.mean(x))
-                    csvwriter.writerow([generateId(),label,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)])
+                    row=[generateId(),label ,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings)]
+
+                    for x in mfccs:
+                         row.append(np.mean(x))
+
+                    for y in chroma:
+                         row.append(np.mean(y))
+            
+                    csvwriter.writerow(row)
+                    print("Features :"+str(len(row)))
              
 
         #-- END OF EXTRACT --    
@@ -138,7 +150,7 @@ class Trainer:
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-        #print(X_train)
+        print(X_train.shape)
 
         model = Sequential()
         model.add(layers.Dense(256, activation='relu', input_shape=(X_train.shape[1],)))
@@ -150,5 +162,8 @@ class Trainer:
                        metrics=['accuracy'])    
         classifier = model.fit(X_train,
                             y_train, 
-                            epochs=35)
+                            epochs=33)
         return model,[x for x in os.listdir(f"dataset/voice-samples")]
+
+#t=Trainer()
+#t.extract()
