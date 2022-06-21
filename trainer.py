@@ -20,10 +20,10 @@ class Trainer:
 
         #checking if training_info.csv exists or not
         #if not exists will create csv file
-        if(not os.path.exists("training_info.csv")):
-            with open("training_info.csv",'w',newline="") as csvfile:
-                writer=csv.writer(csvfile)
-                writer.writerow(self.head)        
+        #if(not os.path.exists("training_info.csv")):
+        with open("training_info.csv",'w',newline="") as csvfile:
+            writer=csv.writer(csvfile)
+            writer.writerow(self.head)        
 
     # -- END OF INTITALIZING CONSTRUCTOR --
 
@@ -112,7 +112,7 @@ class Trainer:
                 with open("training_info.csv",'a',newline='') as csvfile:
                     csvwriter=csv.writer(csvfile)
               
-                    row=[generateId(),label,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)]
+                    row=[generateId(),label ,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)]
                     #for x in mfccs:
                     #    row.append(np.mean(x))
                     csvwriter.writerow([generateId(),label,np.mean(spectral_centroids),np.mean(rmse),np.mean(spectral_rolloff),np.mean(spectral_bandwidth_2),np.mean(spectral_bandwidth_3),np.mean(spectral_bandwidth_4),np.mean(zero_crossings),np.mean(mfccs),np.mean(chroma)])
@@ -150,6 +150,5 @@ class Trainer:
                        metrics=['accuracy'])    
         classifier = model.fit(X_train,
                             y_train, 
-                            epochs=250,
-                            batch_size=250)
+                            epochs=35)
         return model,[x for x in os.listdir(f"dataset/voice-samples")]

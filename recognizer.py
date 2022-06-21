@@ -13,7 +13,7 @@ class Recognizer:
         self.data, self.sampling_rate = librosa.load(self.audio_data)  #loading audio data
         print(type(self.data), type(self.sampling_rate))
 
-    def recognize(self):#,model,labels):
+    def recognize(self,model,labels):
         self.spectral_centroids = librosa.feature.spectral_centroid(y=self.data, sr=self.sampling_rate)[0]   #Extracting Spectral_centroids from audio
         self.rmse=librosa.feature.rms(y=self.data) #calculating rmse
         self.spectral_rolloff = librosa.feature.spectral_rolloff(y=self.data+0.01, sr=self.sampling_rate)[0]  #Extracting Sepectral rolloff
@@ -25,14 +25,14 @@ class Recognizer:
         self.chroma = librosa.feature.chroma_stft(y=self.data, sr=self.sampling_rate)
         self.features=[np.mean(self.spectral_centroids),np.mean(self.rmse),np.mean(self.spectral_rolloff),np.mean(self.spectral_bandwidth_2),np.mean(self.spectral_bandwidth_3),np.mean(self.spectral_bandwidth_4),np.mean(self.zero_crossings),np.mean(self.mfccs),np.mean(self.chroma)]
       
-        print(self.mfccs)
-        print(self.chroma)
-        print(self.features)
+        #print(self.mfccs)
+        #print(self.chroma)
+        #print(self.features)
 
-        #prediction=model.predict([self.features])
-        #sol=zip(prediction[0],labels)
-        #for x in sol: 
-        #    print(x)
+        prediction=model.predict([self.features])
+        sol=zip(prediction[0],labels)
+        for x in sol: 
+            print(x)
         #print(mfccs.shape)
         #print(mfccs)
 
