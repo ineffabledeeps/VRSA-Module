@@ -3,7 +3,9 @@ Voice Recognition Synthesis and Analysis module made using machine learning and 
 
 clone Repository using below command
 ```
-### clone https://github.com/ineffabledeeps/VRSA-Module
+clone https://github.com/ineffabledeeps/VRSA-Module
 ```
 Run
-### python main.py
+```
+python main.py
+```
